@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>食安講堂：餐廳開門七件事之安全與品質指南</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        amber: {
+                            50: '#fffbeb',
+                            100: '#fef3c7',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            700: '#b45309',
+                            800: '#92400e',
+                            900: '#78350f',
+                        },
+                        emerald: {
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans TC', 'Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+        .transform-style-3d {
+            transform-style: preserve-3d;
+        }
+        .backface-hidden {
+            backface-visibility: hidden;
+        }
+        .rotate-y-180 {
+            transform: rotateY(180deg);
+        }
+        .tab-btn.active {
+            border-bottom-color: #d97706;
+            color: #b45309;
+            font-weight: 700;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-amber-50/30 text-slate-800 font-sans min-h-screen flex flex-col antialiased">
+
+    <!-- Navigation Header -->
+    <header class="bg-white border-b border-amber-200/60 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-600 to-orange-500 flex items-center justify-center text-white shadow-md">
+                        <i class="fa-solid fa-utensils text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-lg font-black text-slate-900 leading-tight">食安講堂</h1>
+                        <p class="text-xs text-amber-800 font-medium">Ch.7 餐廳開門七件事：柴米油鹽醬醋茶</p>
+                    </div>
+                </div>
+                <!-- Navigation Tabs -->
+                <nav class="hidden md:flex space-x-8 h-full" id="desktop-nav">
+                    <button onclick="switchTab('overview')" class="tab-btn active inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-slate-600 hover:text-amber-800 transition-colors" data-tab="overview">
+                        <i class="fa-solid fa-book-open mr-2"></i>核心總覽
+                    </button>
+                    <button onclick="switchTab('flashcards')" class="tab-btn inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-slate-600 hover:text-amber-800 transition-colors" data-tab="flashcards">
+                        <i class="fa-solid fa-layer-group mr-2"></i>卡片快刷
+                    </button>
+                    <button onclick="switchTab('quiz')" class="tab-btn inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-slate-600 hover:text-amber-800 transition-colors" data-tab="quiz">
+                        <i class="fa-solid fa-list-check mr-2"></i>模擬測驗 (25題)
+                    </button>
+                    <button onclick="switchTab('toolkit')" class="tab-btn inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-slate-600 hover:text-amber-800 transition-colors" data-tab="toolkit">
+                        <i class="fa-solid fa-vial-circle-check text-amber-600 mr-2"></i>七寶食安檢驗工具
+                    </button>
+                </nav>
+            </div>
+        </div>
+        <!-- Mobile Bottom Nav -->
+        <div class="md:hidden flex justify-around border-t border-slate-200 bg-white py-2 shadow-inner">
+            <button onclick="switchTab('overview')" class="flex flex-col items-center text-xs text-slate-600 focus:outline-none" id="m-nav-overview">
+                <i class="fa-solid fa-book-open text-base mb-1"></i>總覽
+            </button>
+            <button onclick="switchTab('flashcards')" class="flex flex-col items-center text-xs text-slate-600 focus:outline-none" id="m-nav-flashcards">
+                <i class="fa-solid fa-layer-group text-base mb-1"></i>快刷
+            </button>
+            <button onclick="switchTab('quiz')" class="flex flex-col items-center text-xs text-slate-600 focus:outline-none" id="m-nav-quiz">
+                <i class="fa-solid fa-list-check text-base mb-1"></i>測驗
+            </button>
+            <button onclick="switchTab('toolkit')" class="flex flex-col items-center text-xs text-slate-600 focus:outline-none" id="m-nav-toolkit">
+                <i class="fa-solid fa-vial-circle-check text-base mb-1"></i>檢驗工具
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- TAB 1: CORE OVERVIEW -->
+        <section id="tab-overview" class="space-y-8">
+            <!-- Hero Banner -->
+            <div class="bg-gradient-to-r from-amber-900 via-stone-800 to-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
+                <div class="relative z-10 max-w-2xl">
+                    <span class="inline-block px-3 py-1 bg-amber-500/30 border border-amber-400/30 text-amber-200 text-xs font-bold rounded-full mb-3">食品衛生安全與餐飲管理實務考題指南</span>
+                    <h2 class="text-2xl sm:text-3xl font-black mb-3">餐廳開門七件事：食安與品質全解析</h2>
+                    <p class="text-amber-100 text-sm sm:text-base leading-relaxed mb-6">重點涵蓋酒精膏甲醇毒性、米與麵粉危害（黃麴毒素/麩質/塵粉）、油品劣變標準（極性化合物≥25%）、工業副生鹽風險、釀造與化學醬油醋檢驗法、及茶葉農藥防治。</p>
+                    <div class="flex flex-wrap gap-4">
+                        <button onclick="switchTab('quiz')" class="px-5 py-2.5 bg-amber-600 hover:bg-amber-500 text-white text-sm font-bold rounded-xl shadow-md transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-play"></i> 開始 25 題模擬測驗
+                        </button>
+                        <button onclick="switchTab('toolkit')" class="px-5 py-2.5 bg-white/10 hover:bg-white/20 text-white border border-white/20 text-sm font-bold rounded-xl transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-flask text-amber-300"></i> 體驗七寶檢驗工具
+                        </button>
+                    </div>
+                </div>
+                <i class="fa-solid fa-fire-burner absolute -right-6 -bottom-8 text-white/10 text-9xl pointer-events-none hidden sm:block"></i>
+            </div>
+
+            <!-- Concept Grid Cards (The 7 Essentials) -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Card 1: 柴/火的安全 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition space-y-3">
+                    <div class="flex items-center justify-between">
+                        <div class="w-10 h-10 rounded-xl bg-red-100 text-red-600 flex items-center justify-center text-lg font-bold">
+                            <i class="fa-solid fa-fire"></i>
+                        </div>
+                        <span class="text-xs font-bold px-2.5 py-1 bg-red-50 text-red-700 rounded-full border border-red-200">柴：火之安全</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900">酒精膏 (塊) 與甲醇危害</h3>
+                    <p class="text-slate-600 text-xs leading-relaxed">許多廉價酒精膏主要成分為<strong class="text-red-600">甲醇</strong>，對人體毒性極大！</p>
+                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs space-y-1.5">
+                        <div class="flex justify-between border-b pb-1">
+                            <span class="font-bold text-slate-700">甲醇 (廉價)：</span>
+                            <span class="text-red-600 font-medium">無煙垢/水和性大/傷眼致失明</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="font-bold text-slate-700">乙醇 (較貴)：</span>
+                            <span class="text-emerald-700 font-medium">鍋底易黑/對眼睛傷害小</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: 米之安全與真假紫米 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition space-y-3">
+                    <div class="flex items-center justify-between">
+                        <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-lg font-bold">
+                            <i class="fa-solid fa-bowl-rice"></i>
+                        </div>
+                        <span class="text-xs font-bold px-2.5 py-1 bg-amber-50 text-amber-800 rounded-full border border-amber-200">米：食米品質</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900">米蟲警訊與紫糯米驗真</h3>
+                    <ul class="text-slate-600 text-xs space-y-2 list-disc list-inside leading-relaxed">
+                        <li><strong>米蟲警訊：</strong>米若生米蟲，有極高機率產生<span class="text-red-600 font-bold">黃麴毒素</span>，嚴重的傷害肝臟。</li>
+                        <li><strong>真紫糯米：</strong>含天然<span class="text-purple-700 font-semibold">花青素</span>，溶於水，滴<span class="text-amber-700 font-bold">醋</span>試驗會呈<span class="text-red-500 font-bold">紅色</span>反應；染色假紫米顏色不變。</li>
+                    </ul>
+                </div>
+
+                <!-- Card 3: 麵粉與蛋白結構 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition space-y-3">
+                    <div class="flex items-center justify-between">
+                        <div class="w-10 h-10 rounded-xl bg-yellow-100 text-yellow-700 flex items-center justify-center text-lg font-bold">
+                            <i class="fa-solid fa-wheat-awn"></i>
+                        </div>
+                        <span class="text-xs font-bold px-2.5 py-1 bg-yellow-50 text-yellow-800 rounded-full border border-yellow-200">麵粉：蛋白質特性</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900">麥穀蛋白 vs. 醇溶蛋白</h3>
+                    <div class="text-xs space-y-1.5 text-slate-600">
+                        <div class="p-2 bg-yellow-50/50 rounded-lg border border-yellow-200">
+                            <strong class="text-slate-800 block">麥穀蛋白 (Glutenin)：</strong>
+                            分子量300-400萬(膨脹蛋白)，-SH基多，易吸水。分子大難消化，易致<span class="text-red-600 font-bold">麩質腸胃過敏</span>。
+                        </div>
+                        <div class="p-2 bg-yellow-50/50 rounded-lg border border-yellow-200">
+                            <strong class="text-slate-800 block">醇溶蛋白 (Gliadin)：</strong>
+                            分子量約3萬(延展蛋白)，遇水變黏。操作揉麵應<span class="text-amber-800 font-bold">佩戴口罩</span>避免吸入塵粉致呼吸道過敏。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: 油品衛生與四大換油標準 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition space-y-3">
+                    <div class="flex items-center justify-between">
+                        <div class="w-10 h-10 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center text-lg font-bold">
+                            <i class="fa-solid fa-bottle-droplet"></i>
+                        </div>
+                        <span class="text-xs font-bold px-2.5 py-1 bg-orange-50 text-orange-700 rounded-full border border-orange-200">油：四大強制換油指標</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900">油炸用油劣變標準</h3>
+                    <p class="text-xs text-slate-600">符合以下<strong class="text-red-600">換油指標</strong>即屬不合格，應全部更換新油：</p>
+                    <ul class="text-slate-700 text-xs space-y-1.5 font-medium bg-orange-50/40 p-2.5 rounded-xl border border-orange-100 leading-relaxed">
+                        <li class="flex items-start gap-1.5"><i class="fa-solid fa-triangle-exclamation text-amber-600 mt-0.5"></i> <span>總極性化合物 (TPC) 不可超過25%；酸價 (AV) 超過2.0 mg KOH/g；發煙點降至170℃ (油炸油已開始冒煙)；油色深且黏漬，具油耗味、泡沫多、泡沫面積超過油鍋二分之一以上</span></li>
+                    </ul>
+                </div>
+
+                <!-- Card 5: 鹽之品質與工業鹽危害 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition space-y-3">
+                    <div class="flex items-center justify-between">
+                        <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-lg font-bold">
+                            <i class="fa-solid fa-cubes-stacked"></i>
+                        </div>
+                        <span class="text-xs font-bold px-2.5 py-1 bg-blue-50 text-blue-700 rounded-full border border-blue-200">鹽：鹽類食安</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900">低鈉鹽警訊與副生鹽鑑別</h3>
+                    <ul class="text-slate-600 text-xs space-y-2 leading-relaxed">
+                        <li><strong>健康低鈉鹽：</strong>以<span class="text-blue-700 font-bold">氯化鉀 (KCl)</span> 替代部份氯化鈉，若鉀＞鈉，可能含微量自然輻射劑量 (K-40)，應適量食用。</li>
+                        <li><strong>工業副生鹽：</strong>環氧樹脂(Epoxy)生產後回收鹽，含毒性丙二酚及四溴丙二酚！攤開在A4白紙上有黑點者切勿用於醃製。</li>
+                    </ul>
+                </div>
+
+                <!-- Card 6: 醬油釀造 vs 水解化學醬油 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition space-y-3">
+                    <div class="flex items-center justify-between">
+                        <div class="w-10 h-10 rounded-xl bg-stone-100 text-stone-700 flex items-center justify-center text-lg font-bold">
+                            <i class="fa-solid fa-jar"></i>
+                        </div>
+                        <span class="text-xs font-bold px-2.5 py-1 bg-stone-50 text-stone-800 rounded-full border border-stone-200">醬：釀造 vs. 化學</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900">醬油品質與致癌副產物</h3>
+                    <ul class="text-slate-600 text-xs space-y-1.5 leading-relaxed">
+                        <li>• <strong>釀造醬油：</strong>富含蛋白與油脂，<span class="text-amber-800 font-bold">掛壁明顯</span>、加酒精會產生<span class="text-amber-800 font-bold">沉澱</span>、泡沫細小持久。</li>
+                        <li>• <strong>化學水解醬油：</strong>鹽酸強迫分解，含有毒致癌物<span class="text-red-600 font-bold">3-MCPD (限0.3ppm)</span> 及焦糖色素副產物<span class="text-red-600 font-bold">4-MEI</span>。</li>
+                        <li>• <strong>警告：</strong>含<span class="text-red-600 font-bold">蔗糖素</span>之醬油切勿用於燒烤油炸！</li>
+                    </ul>
+                </div>
+
+                <!-- Card 7: 醋之鑑別 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition space-y-3">
+                    <div class="flex items-center justify-between">
+                        <div class="w-10 h-10 rounded-xl bg-teal-100 text-teal-700 flex items-center justify-center text-lg font-bold">
+                            <i class="fa-solid fa-glass-water font-bold"></i>
+                        </div>
+                        <span class="text-xs font-bold px-2.5 py-1 bg-teal-50 text-teal-800 rounded-full border border-teal-200">醋：釀造醋 vs. 醋精</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900">釀造醋 vs. 冰醋酸化學醋</h3>
+                    <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200 text-xs space-y-1.5">
+                        <p><strong class="text-teal-700">天然釀造醋：</strong>淡黃或金黃色，搖晃泡沫多且久久不散，香醇不刺鼻。</p>
+                        <p><strong class="text-red-600">化學醋 (醋精)：</strong>冰醋酸稀釋，無色透明，泡沫少且消退快，味道強烈嗆眼刺舌。</p>
+                    </div>
+                </div>
+
+                <!-- Card 8: 茶葉食安與農藥自保 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition space-y-3">
+                    <div class="flex items-center justify-between">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-lg font-bold">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                        <span class="text-xs font-bold px-2.5 py-1 bg-emerald-50 text-emerald-800 rounded-full border border-emerald-200">茶：混茶與農藥</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900">茶葉農藥避險與蝶豆花警告</h3>
+                    <ul class="text-slate-600 text-xs space-y-1.5 leading-relaxed">
+                        <li>• <strong>避農藥技巧：</strong>認明 <span class="text-emerald-700 font-bold">15碼 TAP 產銷履歷</span>、產地證明標章；以溫度高於攝氏80度熱水沖泡後，將第一泡倒掉， 可以去除大部分農藥的殘留。</li>
+                        <li>• <strong>蝶豆花警訊：</strong>美國列入有毒植物資料庫，缺少長期人體安全性評估，使用應謹慎！</li>
+                        <li>• <strong>國產茶規定：</strong>2023/1/1 起產製之國產茶葉依法必須登錄溯源碼。</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- TAB 2: FLASHCARDS -->
+        <section id="tab-flashcards" class="hidden space-y-6">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                <div>
+                    <h2 class="text-xl font-bold text-slate-900">開門七件事 核心考點卡片快刷</h2>
+                    <p class="text-xs text-slate-500 mt-1">點擊卡片即可翻面查看詳細解析。掌握後可點擊標記為「已熟記」。</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span class="text-xs text-slate-600">進度：<strong id="card-progress-text" class="text-amber-600 font-black text-sm">0/15</strong></span>
+                    <button onclick="resetFlashcards()" class="px-3 py-1.5 text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-lg transition">
+                        <i class="fa-solid fa-rotate-left mr-1"></i>重置
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card Container -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="flashcards-grid">
+                <!-- Dynamic cards populated by JS -->
+            </div>
+        </section>
+
+        <!-- TAB 3: MOCK QUIZ -->
+        <section id="tab-quiz" class="hidden space-y-6">
+            <!-- Quiz Header Banner -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <span class="px-2.5 py-0.5 bg-amber-100 text-amber-800 text-xs font-bold rounded-full mb-2 inline-block">Ch.7 專業檢定測驗</span>
+                    <h2 class="text-xl font-bold text-slate-900">餐廳開門七件事 模擬測驗（共 25 題）</h2>
+                    <p class="text-xs text-slate-500 mt-1">選取選項後系統將立即判讀正誤並提供完整解析與法規觀念。</p>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="text-right">
+                        <div class="text-xs text-slate-400">目前得分</div>
+                        <div class="text-2xl font-black text-amber-600" id="quiz-score-display">0 / 25</div>
+                    </div>
+                    <button onclick="resetQuiz()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl transition">
+                        <i class="fa-solid fa-arrow-rotate-right mr-1"></i>重新測驗
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quiz Items Container -->
+            <div class="space-y-6" id="quiz-container">
+                <!-- Generated by JS -->
+            </div>
+        </section>
+
+        <!-- TAB 4: SAFETY TOOLKIT -->
+        <section id="tab-toolkit" class="hidden space-y-6">
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-6">
+                <div>
+                    <h2 class="text-xl font-bold text-slate-900">七寶食安檢驗與品質互動小工具</h2>
+                    <p class="text-xs text-slate-500 mt-1">運用化學與物性原理，提供油炸油換油計算、紫米鑑別模擬與醬油/醋快速品質診斷。</p>
+                </div>
+
+                <!-- Tool Tabs -->
+                <div class="grid lg:grid-cols-3 gap-6">
+                    
+                    <!-- Widget 1: 紫糯米醋試驗模擬 -->
+                    <div class="bg-amber-50/50 p-5 rounded-2xl border border-amber-200/80 space-y-4">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-vial text-purple-600 text-lg"></i>
+                            <h3 class="font-bold text-slate-900 text-sm">1. 紫糯米真偽「醋試驗」模擬</h3>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">真紫糯米含花青素（pH酸鹼指示劑），加入醋後應呈現紅色反應。</p>
+                        
+                        <div class="space-y-3">
+                            <label class="block text-xs font-bold text-slate-700">選擇測試樣品：</label>
+                            <select id="rice-sample-select" class="w-full p-2.5 text-xs bg-white border border-slate-300 rounded-xl">
+                                <option value="real">樣品 A (天然優質紫糯米)</option>
+                                <option value="fake">樣品 B (色素人工染色糯米)</option>
+                            </select>
+                            
+                            <button onclick="simulateRiceTest()" class="w-full py-2 bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs rounded-xl shadow transition">
+                                滴入食用醋 (酸性試劑)
+                            </button>
+                        </div>
+
+                        <div id="rice-test-result" class="p-3 bg-white rounded-xl border border-slate-200 text-xs min-h-[80px] flex items-center justify-center text-center text-slate-400 italic">
+                            請點擊「滴入食用醋」開始模擬測試
+                        </div>
+                    </div>
+
+                    <!-- Widget 2: 油炸油換油診斷器 -->
+                    <div class="bg-orange-50/50 p-5 rounded-2xl border border-orange-200/80 space-y-4">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-temperature-arrow-up text-orange-600 text-lg"></i>
+                            <h3 class="font-bold text-slate-900 text-sm">2. 油炸用油換油品質診斷器</h3>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">輸入油品檢測數據，判定是否符合《食品良好衛生規範》。</p>
+                        
+                        <div class="space-y-2 text-xs">
+                            <div>
+                                <label class="font-semibold text-slate-700">總極性化合物 TPC (%)：</label>
+                                <input type="number" id="oil-tpc" placeholder="例如: 22" class="w-full p-2 border border-slate-300 rounded-lg bg-white mt-1">
+                            </div>
+                            <div>
+                                <label class="font-semibold text-slate-700">酸價 Acid Value (mg KOH/g)：</label>
+                                <input type="number" step="0.1" id="oil-av" placeholder="例如: 1.8" class="w-full p-2 border border-slate-300 rounded-lg bg-white mt-1">
+                            </div>
+                            <div>
+                                <label class="font-semibold text-slate-700">發煙 point (°C)：</label>
+                                <input type="number" id="oil-smoke" placeholder="例如: 180" class="w-full p-2 border border-slate-300 rounded-lg bg-white mt-1">
+                            </div>
+                            <button onclick="diagnoseOil()" class="w-full py-2 bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs rounded-xl shadow transition mt-2">
+                                開始合規性評估
+                            </button>
+                        </div>
+
+                        <div id="oil-test-result" class="p-3 bg-white rounded-xl border border-slate-200 text-xs min-h-[60px] flex items-center justify-center text-center text-slate-400 italic">
+                            請輸入數據後點擊評估
+                        </div>
+                    </div>
+
+                    <!-- Widget 3: 醬油/醋 品質鑑別器 -->
+                    <div class="bg-stone-50 p-5 rounded-2xl border border-stone-200 space-y-4">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-wine-bottle text-stone-700 text-lg"></i>
+                            <h3 class="font-bold text-slate-900 text-sm">3. 醬油與醋 品質特徵速查</h3>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">點擊物理觀察特徵，查看屬於天然釀造或化學調合製品。</p>
+                        
+                        <div class="space-y-2">
+                            <button onclick="checkItem('soy-brew')" class="w-full text-left p-2.5 bg-white hover:bg-amber-50 border border-slate-200 rounded-xl text-xs flex justify-between items-center transition">
+                                <span>醬油：玻璃瓶裝、掛壁明顯、加酒精沉澱</span>
+                                <i class="fa-solid fa-angle-right text-slate-400"></i>
+                            </button>
+                            <button onclick="checkItem('soy-chem')" class="w-full text-left p-2.5 bg-white hover:bg-amber-50 border border-slate-200 rounded-xl text-xs flex justify-between items-center transition">
+                                <span>醬油：泡沫多且極快消失、含果糖酸>0.1%</span>
+                                <i class="fa-solid fa-angle-right text-slate-400"></i>
+                            </button>
+                            <button onclick="checkItem('vinegar-brew')" class="w-full text-left p-2.5 bg-white hover:bg-amber-50 border border-slate-200 rounded-xl text-xs flex justify-between items-center transition">
+                                <span>醋：淡黃色、搖晃泡沫久久不散、口感甘醇</span>
+                                <i class="fa-solid fa-angle-right text-slate-400"></i>
+                            </button>
+                            <button onclick="checkItem('vinegar-chem')" class="w-full text-left p-2.5 bg-white hover:bg-amber-50 border border-slate-200 rounded-xl text-xs flex justify-between items-center transition">
+                                <span>醋：透明無色、強烈刺鼻薰眼、入喉酸辣</span>
+                                <i class="fa-solid fa-angle-right text-slate-400"></i>
+                            </button>
+                        </div>
+
+                        <div id="item-check-result" class="p-3 bg-white rounded-xl border border-slate-200 text-xs min-h-[60px] flex items-center justify-center text-center text-slate-400 italic">
+                            點擊上方特徵查看研判結果
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-6 mt-12 text-center text-xs text-slate-400">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>© 2026 食安講堂：餐廳開門七件事（柴米油鹽醬醋茶）之安全與品質指南. All rights reserved.</p>
+            <p class="mt-1">本教學應用專為餐飲衛生安全、食品品質驗證與相關檢定考試設計。</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- DATA STRUCTURES ---
+        const quizData = [
+            {
+                tag: '柴／火之安全',
+                question: '關於餐飲業常用的酒精膏（塊），下列敘述何者正確？',
+                options: [
+                    '許多廉價酒精膏主要成分為乙醇，燃燒無毒',
+                    '酒精膏若以甲醇為主要成分，燃燒雖無煙垢，但對眼睛與神經系統毒性極大',
+                    '甲醇與乙醇皆可作為食品添加物使用',
+                    '乙醇燃燒火力比甲醇好且不會使鍋底變黑'
+                ],
+                correct: 1,
+                explanation: '許多廉價酒精膏成分為甲醇，其水和性大且對眼睛與神經系統傷害極大（嚴重可致失明）；乙醇對人體毒性較小，但價格較貴且燃燒時鍋底較易變黑。'
+            },
+            {
+                tag: '米與米蟲危害',
+                question: '若發現儲存的白米大量生長米蟲（象鼻蟲），在食品安全上最需要警惕的危害為何？',
+                options: [
+                    '米蟲會大量分泌致癌的重金屬鉛',
+                    '米生米蟲代表儲存環境高溫潮濕，有極高機率伴隨產生黃麴毒素（危害肝臟）',
+                    '米蟲會使白米蛋白質轉化為反式脂肪',
+                    '生米蟲的白米會自動轉變成化學水解米'
+                ],
+                correct: 1,
+                explanation: '米生米蟲代表儲存時間過長或環境濕熱，此條件極易導致黴菌滋生並產生「黃麴毒素 (Aflatoxin)」，對肝臟具有強烈毒性與致癌風險。'
+            },
+            {
+                tag: '真假紫米判定',
+                question: '如何以簡易化學檢測法鑑別真假紫糯米？',
+                options: [
+                    '滴入酒精，真紫米會變白色',
+                    '滴入食用醋（酸性試劑），真紫米因含有天然花青素會呈現紅色反應',
+                    '放入高熱油炸，假紫米會發煙冒藍煙',
+                    '真紫米不溶於水，假紫米極易溶於水'
+                ],
+                correct: 1,
+                explanation: '真紫糯米的紫色來自於天然花青素（為酸鹼指示劑），遇酸（如食用醋）會呈現紅色反應；而人工色素染色之假紫糯米滴醋後顏色不會發生此特異變化。'
+            },
+            {
+                tag: '麵粉蛋白質特性',
+                question: '關於麵粉中的「麥穀蛋白 (Glutenin)」與「醇溶蛋白 (Gliadin)」之比較，下列何者正確？',
+                options: [
+                    '麥穀蛋白遇水變黏稱為延展蛋白；醇溶蛋白為膨脹蛋白',
+                    '醇溶蛋白分子量較大（300-400萬），易引發麩質過敏',
+                    '醇溶蛋白遇水具黏性（延展蛋白），操作麵糰揉麵時應佩戴口罩以免吸入塵粉引發呼吸道過敏',
+                    '兩者均完全不含 -SH 胺基酸'
+                ],
+                correct: 2,
+                explanation: '醇溶蛋白分子量約3萬，遇水具黏性稱為延展蛋白，懸浮塵粉易引發呼吸道過敏（操作應戴口罩）；麥穀蛋白分子量達300-400萬（膨脹蛋白），吸收水與空氣，分子大較難消化易引發腸胃麩質過敏。'
+            },
+            {
+                tag: '油炸油強制標準',
+                question: '依據我國《食品良好衛生規範準則》，油炸用食用油達到下列哪一標準時，認定不合格並「應全部更換新油」？',
+                options: [
+                    '總極性化合物 (Total Polar Compounds) 不可超過 25%',
+                    '酸價 (Acid Value) 達到 0.5 mg KOH/g',
+                    '發煙點溫度高於 200°C',
+                    '油炸鍋泡沫面積達 1/10 以上'
+                ],
+                correct: 0,
+                explanation: '法定換油四大強制指標：總極性化合物 (TPC) 不可超過25%；酸價 (AV) 超過2.0 mg KOH/g；發煙點降至170℃ (油炸油已開始冒煙)；油色深且黏漬，具油耗味、泡沫多、泡沫面積超過油鍋二分之一以上。'
+            },
+            {
+                tag: '橄欖油品評',
+                question: '關於 Extra Virgin（特級初榨）橄欖油的感官特點與使用建議，下列何者正確？',
+                options: [
+                    '含有豐富中短鏈脂肪酸，發煙點極高非常適合長時間高溫油炸',
+                    '入口入喉具有「果香、苦味、辣味（橄欖醛）」三大特點，較不適合高溫油炸',
+                    '經過高溫脫臭脫色精製，幾乎不含植物生化素',
+                    '比重極小，倒油時油線極不穩定且暴衝'
+                ],
+                correct: 1,
+                explanation: 'Extra Virgin 特級初榨橄欖油含有豐富植物生化素與游離脂肪酸，具有果香、苦味與辣味（橄欖醛 oleocanthal）特點，且含有較多中短鏈脂肪酸不耐高溫，不適合長時間油炸。'
+            },
+            {
+                tag: '工業鹽食安危害',
+                question: '醃製食品業者絕不可使用生產 Epoxy（環氧樹脂）後回收之「工業副生鹽」，主因為何？',
+                options: [
+                    '副生鹽結晶太大無法溶解',
+                    '副生鹽極易殘留毒性物質「丙二酚及四溴丙二酚」',
+                    '副生鹽含過量天然氯化鉀',
+                    '副生鹽會使食品產生花青素沉澱'
+                ],
+                correct: 1,
+                explanation: 'Epoxy（環氧樹脂）生產過程中產生的回收副生鹽，可能殘留毒性化學物質「丙二酚及四溴丙二酚」，嚴重危害食安，絕不可用於食品醃製與加工。'
+            },
+            {
+                tag: '醬油致癌物規範',
+                question: '化學水解醬油係以鹽酸強迫分解脫脂豆粕，此過程極易產生何種法定限量（0.3 ppm）之致癌物質？',
+                options: [
+                    '3-單氯丙二醇 (3-MCPD)',
+                    '黃麴毒素 B1',
+                    '三聚氰胺',
+                    '二氧化氯'
+                ],
+                correct: 0,
+                explanation: '油脂甘油與鹽酸在高熱下反應會生成具致癌性的副產物「3-單氯丙二醇 (3-MCPD)」，我國法規定限量為 0.3 ppm。此外焦糖色素亦需注意 4-甲基咪唑 (4-MEI) 規範。'
+            },
+            {
+                tag: '釀造 vs 化學醋',
+                question: '如何區分天然「釀造醋」與以冰醋酸稀釋之「化學醋（醋精）」？',
+                options: [
+                    '釀造醋無色透明，化學醋呈金黃色',
+                    '搖晃醋瓶時，釀造醋產生的泡沫細密且「久久不散」；化學醋泡沫少且迅速消失',
+                    '化學醋入喉口感極為甘醇滑順',
+                    '釀造醋聞起來有強烈薰眼刺鼻的冰醋酸味'
+                ],
+                correct: 1,
+                explanation: '天然釀造醋含有高濃度有機酸與大分子蛋白質/胺基酸，搖晃後泡沫多且持久不散，氣味香醇；化學醋由冰醋酸稀釋，無色透明，泡沫極少消退快，具強烈刺鼻薰眼感。'
+            },
+            {
+                tag: '茶葉農藥防範',
+                question: '關於避開茶葉農藥殘留與食安風險的實務做法，下列何者「錯誤」？',
+                options: [
+                    '選擇貼有 15 碼 TAP 產銷履歷或產地證明標章之茶葉',
+                    '以溫度高於攝氏80度熱水沖泡後，將第一泡倒掉， 可以去除大部分農藥的殘留',
+                    '蝶豆花含有長期豐富的人體安全性評估，可隨意大量添加於所有餐飲中',
+                    '2023年1月1日起產製之國產茶葉依法必須依規定登錄溯源資訊及標示溯源碼'
+                ],
+                correct: 2,
+                explanation: '蝶豆花 (Clitoria ternatea) 雖然用於染色，但目前缺乏完整長期之人體安全性評估，美國 FDA 甚至將其列於有毒植物資料庫中，歐盟亦曾終止其新興食品申請，使用應非常謹慎，不可隨意大量食用。'
+            },
+            {
+                tag: '柴／氣體安全',
+                question: '餐廳廚房使用液化石油氣（桶裝瓦斯）時，下列儲放方式何者正確？',
+                options: [
+                    '瓦斯鋼瓶應放置於密閉且高溫之室內深處以防偷竊',
+                    '鋼瓶應放置於戶外或通風良好處，且必須直立固定並遠離火源與熱源',
+                    '瓦斯鋼瓶可橫臥堆疊放置以節省廚房空間',
+                    '鋼瓶氣閥處可塗抹食用油以防止生鏽咬死'
+                ],
+                correct: 1,
+                explanation: '瓦斯鋼瓶必須直立固定、防止傾倒，且應置於通風良好處並避免陽光直射或靠近火源，防止瓦斯積聚或高溫發生爆炸及一氧化碳中毒風險。'
+            },
+            {
+                tag: '米／穀類儲存',
+                question: '為預防米類與花生等穀物滋生黴菌並產生毒性極強的「黃麴毒素」，倉庫儲存時的水分含量建議應控制在多少以下？',
+                options: [
+                    '14.5% 以下',
+                    '25.0% 以下',
+                    '35.0% 以下',
+                    '50.0% 以下'
+                ],
+                correct: 0,
+                explanation: '黃麴黴菌在高濕高溫（相對濕度85%以上、溫度28-30°C）極易繁殖。穀物儲藏時水分含量應控制在 14.5%（或 13%）以下，並保持通風乾燥。'
+            },
+            {
+                tag: '米／品質評估',
+                question: '依據我國國家標準 (CNS)，有關包裝白米品質分級之敘述，下列何者正確？',
+                options: [
+                    'CNS 一等米之夾雜物與被害粒容許比例高於三等米',
+                    'CNS 一等米為最高品質等級，其被害粒、異形粒及破碎粒之容許標準最嚴格',
+                    '米粒表面出現白粉質（死米）越多者代表等級越高',
+                    'CNS 三等米完全不允許含有任何破碎米粒'
+                ],
+                correct: 1,
+                explanation: 'CNS 白米標準分為一等、二等、三等，其中一等米品質最好，對夾雜物、被害粒、熱損傷粒、異形粒與破碎粒的容許上限最嚴格。'
+            },
+            {
+                tag: '麵粉／添加物法規',
+                question: '過去麵粉廠常添加「過氧化苯醯 (Benzoyl Peroxide)」作為麵粉漂白劑與品質改良劑，現行我國衛生福利部之食安規範為何？',
+                options: [
+                    '列為合法無限量添加之食品添加物',
+                    '已全面禁用，不得添加於麵粉中',
+                    '僅允許添加於高筋麵粉，低筋麵粉禁用',
+                    '規定每公斤麵粉可添加 100g 以上'
+                ],
+                correct: 1,
+                explanation: '衛生福利部考量飲食健康，已將過氧化苯醯 (Benzoyl Peroxide) 從食品添加物列表中移除，目前我國規範麵粉中「不得添加」過氧化苯醯漂白劑。'
+            },
+            {
+                tag: '麵粉／過敏原標示',
+                question: '衛生福利部公告之「食品過敏原標示規定」中，下列關於小麥麵粉相關製品之標示要求何者正確？',
+                options: [
+                    '小麥為常見糧食，免標示過敏原警告',
+                    '含有「含麩質之穀物及其製品」必須於外包裝顯著標示過敏原警語',
+                    '僅有進口麵粉需要標示，國產麵粉免標',
+                    '標示字體大小不得大於 1 毫米'
+                ],
+                correct: 1,
+                explanation: '含麩質之穀物（如小麥、大麥、黑麥等）及其製品為法定強制標示之過敏原項目，必須在包裝上以顯著字體標示醒語（例如：本產品含有小麥及其製品）。'
+            },
+            {
+                tag: '油／發煙點機制',
+                question: '長時間高溫油炸會使食用油迅速劣變，下列何種情況會造成油品「發煙點」顯著下降？',
+                options: [
+                    '油品中游離脂肪酸 (FFA) 增加與食物渣殘留',
+                    '加入全新的新油進行混合',
+                    '將油溫降低至室溫避光保存',
+                    '使用高純度之飽和脂肪酸油脂'
+                ],
+                correct: 0,
+                explanation: '油脂高溫水解與氧化會產生游離脂肪酸，加上殘留食物渣被重複高溫焦化，會大幅降低油品的發煙點（發煙點降至170℃以下即達換油標準）。'
+            },
+            {
+                tag: '油／冷壓與高溫裂變',
+                question: '有關食用油冷壓製程與高溫烹調時游離脂肪酸 (Free Fatty Acids, FFA) 生成之敘述，下列何者正確？',
+                options: [
+                    '冷壓油（如初榨橄欖油）未經高溫脫臭精製，保留天然抗氧化物，但發煙點較低，高溫加熱易使脂肪酸熱裂變產生有害物',
+                    '油脂游離脂肪酸含量越高，其發煙點越高，越適合長時間高溫油炸',
+                    '冷壓榨油過程中需加入高濃度的強鹼與高溫去臭，以防止游離脂肪酸裂解',
+                    '高溫油炸時，游離脂肪酸會自動結合轉化為抗氧化的維生素E'
+                ],
+                correct: 0,
+                explanation: '冷壓（Cold-pressed）榨油是在低溫下物理壓榨，未經高溫脫臭脫色與化學精製，保留維生素E與多酚等抗氧化物；但因含有較多游離脂肪酸與微量天然雜質，發煙點較低。若於高溫下長時間加熱，游離脂肪酸極易熱裂變產生揮發性醛類與過氧化物等有害物質，因此不宜高溫深炸。'
+            },
+            {
+                tag: '鹽／加碘鹽規範',
+                question: '為預防民眾缺碘性甲狀腺腫大，市售食用鹽常添加碘化合物，關於「加碘鹽」之包裝標示規範何者正確？',
+                options: [
+                    '不得標示「碘」字，以免民眾恐慌',
+                    '必須品名標示「加碘鹽」，並加註「碘為人體必需微量營養素」或相關醒語',
+                    '加碘鹽僅限醫師開立處方方可購買',
+                    '加碘鹽在高溫炒菜時絕不會有任何損失'
+                ],
+                correct: 1,
+                explanation: '衛生福利部規定添加碘化鉀或碘酸鉀之食用鹽，品名應標示「加碘鹽」或「含碘鹽」，並於包裝上標示相關營養警語及注意事項。'
+            },
+            {
+                tag: '醬／四種醬油分類與定義',
+                question: '依衛生福利部「包裝醬油標示規定」，醬油依製程分為四大類。下列關於「速釀醬油」與「混合（調合）醬油」之定義敘述，何者正確？',
+                options: [
+                    '速釀醬油係以植物性蛋白質水解液加入麴菌再經發酵熟成；混合醬油則為調合釀造醬油與水解醬油或速釀醬油者',
+                    '速釀醬油完全不使用任何酵素或發酵過程，僅以強酸高溫水解後直接裝瓶',
+                    '混合醬油只需添加高濃縮焦糖色素，依法即可詳細標示為「純釀造醬油」',
+                    '水解醬油為製麴發酵超過180天之頂級天然醬油，絕不含酸水解成分'
+                ],
+                correct: 0,
+                explanation: '依衛福部《包裝醬油標示規定》四大分類：1.【釀造醬油】：以植物性蛋白質經製麴發酵製成，總氮量達標且果糖酸<0.1%。 2.【水解醬油】：以酸或酵素水解植物性蛋白質，未經發酵者。 3.【速釀醬油】：以植物性蛋白質水解液，加入麴菌經發酵熟成者。 4.【混合（調合）醬油】：混合釀造醬油與水解醬油或速釀醬油者。'
+            },
+            {
+                tag: '醬／醬油分類標示',
+                question: '依據衛福部「醬油標示規定」，包裝醬油若標示為「釀造」醬油，必須符合下列何種條件？',
+                options: [
+                    '以鹽酸水解豆粕後直接調味',
+                    '必須以植物性蛋白質原料經製麴微生物發酵製成，且總氮量須達標準',
+                    '只要添加焦糖色素即可稱為釀造醬油',
+                    '發酵時間必須少於 24 小時'
+                ],
+                correct: 1,
+                explanation: '標示「釀造」醬油者，必須以植物性蛋白質原料（黃豆、黑豆等）經微生物製麴發酵製成，且其總氮量須符合 CNS 國家標準（果糖酸含量不得超過0.1%）。'
+            },
+            {
+                tag: '醬／化學醬油製造',
+                question: '化學水解醬油製造過程中，使用強酸（鹽酸）分解植物蛋白後，必須加入何種物質進行酸鹼中和？',
+                options: [
+                    '氫氧化鈉 (NaOH) 或碳酸鈉',
+                    '醋酸冰醋酸',
+                    '濃硫酸',
+                    '檸檬酸結晶'
+                ],
+                correct: 0,
+                explanation: '水解醬油以高濃度的鹽酸在加熱下分解脫脂大豆，反應結束後須加入鹼性物質（如氫氧化鈉或碳酸鈉）進行中和，中和後會產生氯化鈉（鹽分）。'
+            },
+            {
+                tag: '醋／成分與風味',
+                question: '優質天然釀造醋（如米醋、高粱醋）之所以比純化學醋（醋精）香醇且口感豐富，主因為何？',
+                options: [
+                    '釀造醋含有發酵產生的多種有機酸、胺基酸、酯類與糖分',
+                    '釀造醋添加了高劑量的化學人工味精',
+                    '釀造醋只含有單一濃度的工業冰醋酸',
+                    '釀造醋經過高壓氫化反應'
+                ],
+                correct: 0,
+                explanation: '天然釀造醋經穀物糖化、酒精發酵及醋酸發酵，過程中生成醋酸、乳酸、蘋果酸、多元胺基酸與芳香酯類，因此氣味香醇、口感回甘；而化學醋僅有稀釋冰醋酸的單一刺鼻酸味。'
+            },
+            {
+                tag: '醋／標示法規',
+                question: '依衛福部「包裝食用醋標示規定」，若以冰醋酸或醋酸稀釋液為原料，添加糖類、酸味劑、調味劑等製成者，其品名應如何標示？',
+                options: [
+                    '應標示為「合成醋」',
+                    '可直接標示為「純天然釀造醋」',
+                    '應標示為「有機發酵醋」',
+                    '免標示品名'
+                ],
+                correct: 0,
+                explanation: '凡以冰醋酸或醋酸稀釋液添加調味劑等製成之食用醋，依法品名必須明確標示為「合成醋」，不得混淆標示為釀造醋。'
+            },
+            {
+                tag: '茶／衛生指標',
+                question: '餐廳自製冷泡茶或現場調製手搖茶飲，在食品衛生檢驗中，主要用於評估其衛生狀況與微生物污染的指標菌為何？',
+                options: [
+                    '腸桿菌科 (Enterobacteriaceae)',
+                    '狂犬病病毒',
+                    '肉毒桿菌芽孢',
+                    '靈芝菌絲體'
+                ],
+                correct: 0,
+                explanation: '衛福部《飲料類衛生標準》中，以「腸桿菌科 (Enterobacteriaceae)」作為監測作業環境、水源與人員衛生操作是否合規的核心微生物指標菌。'
+            },
+            {
+                tag: '茶／溯源管理',
+                question: '自 2023 年 1 月 1 日起，農業部規定國產茶葉於產製出貨時，必須具備下列何種溯源標示？',
+                options: [
+                    '登錄產銷履歷 (TAP)、有機驗證或溯源農糧產品條碼 (QR Code)',
+                    '塗抹化學色素防偽',
+                    '附上進口關稅證明文件',
+                    '免任何標示即可直接銷售'
+                ],
+                correct: 0,
+                explanation: '為杜絕境外茶冒充國產茶，自2023年1月1日起，凡產製之國產茶葉依法必須登錄產銷履歷 (TAP)、有機驗證或溯源農糧產品 (QR Code) 等溯源碼。'
+            }
+        ];
+
+        const flashcardData = [
+            { title: '甲醇 (Methanol)', tag: '柴／火', front: '廉價酒精膏若含甲醇，對人體有何致命危害？', back: '甲醇水和性大，在人體代謝為【甲酸】，對眼睛與視神經傷害極大，嚴重引發失明、酸中毒與死亡！' },
+            { title: '米蟲與黃麴毒素', tag: '米', front: '白米生米蟲代表什麼食安警訊？', back: '代表米貯存時間過長或環境濕熱，高機率產生【黃麴毒素 (Aflatoxin)】，對肝臟具強烈毒性與致癌性。' },
+            { title: '紫糯米醋試驗', tag: '米', front: '如何以「醋」分辨真假紫糯米？', back: '真紫米含天然【花青素】，滴食用醋呈【紅色反應】；染色假紫米滴醋後顏色不變。' },
+            { title: '麥穀蛋白 (Glutenin)', tag: '麵粉', front: '麥穀蛋白的分子量與過敏特性為何？', back: '分子量高達300-400萬（膨脹蛋白），-SH基多易吸水。分子過大不易消化，易引發【腸胃道麩質過敏】。' },
+            { title: '醇溶蛋白 (Gliadin)', tag: '麵粉', front: '揉麵粉時為何需要配戴口罩？', back: '醇溶蛋白遇水具黏性（延展蛋白），揉麵時揚起的懸浮塵粉易被吸入呼吸道，引發【呼吸道過敏】。' },
+            { title: '總極性化合物 (TPC)', tag: '油', front: '法規規定油炸油之 TPC 換油標準為何？', back: '總極性化合物 (Total Polar Compounds) 【不可超過25%】，達標時不得再使用，必須全部更換新油！' },
+            { title: '酸價 (Acid Value)', tag: '油', front: '油炸油與食用豬脂之酸價法定標準？', back: '食用豬脂酸價標準為 1.3；油炸油之換油標準為【酸價 (AV) 超過2.0 mg KOH/g】（試紙變黃即應換油）。' },
+            { title: '特級初榨橄欖油', tag: '油', front: 'Extra Virgin 橄欖油口嚐與入喉特徵？', back: '具備【果香】（鼻聞）、【苦味】（口含10秒，植物生化素）、【辣味】（入喉，橄欖醛 oleocanthal）。不適合高溫油炸。' },
+            { title: '工業副生鹽', tag: '鹽', front: '如何辨別工業副生鹽？為何不可用於醃製？', back: '將鹽攤開在 A4 白紙上若有【黑點】即可能為副生鹽。因含毒性【丙二酚及四溴丙二酚】，嚴禁食用。' },
+            { title: '減鈉含碘鹽', tag: '鹽', front: '購買減鈉鹽看營養標示有何特別注意事項？', back: '若標示中【鉀 (K) 的含量大於鈉 (Na)】，可能含有較多之自然天然輻射劑量 (K-40)，應適量食用。' },
+            { title: '3-MCPD 致癌物', tag: '醬油', front: '水解化學醬油中的 3-MCPD 法定限量為多少？', back: '3-單氯丙二醇 (3-MCPD) 為鹽酸強迫分解油脂之致癌副產物，我國衛生標準限量為 【0.3 ppm】。' },
+            { title: '醬油蔗糖素警告', tag: '醬油', front: '含有「蔗糖素」的醬油在使用上有何禁忌？', back: '含甜味劑「蔗糖素」之醬油【絕對不要用於高溫燒烤或油炸】，以確保飲食安全！' },
+            { title: '醬油掛壁與沉澱', tag: '醬油', front: '為何天然釀造醬油掛壁明顯且加酒精會沉澱？', back: '因含豆類發酵之中間產物【蛋白、蛋白胨及油脂】，遇酒精會產生沉澱；水解醬油僅有胺基酸無沉澱。' },
+            { title: '釀造醋泡沫特徵', tag: '醋', front: '如何從「泡沫」快速分辨釀造醋與化學醋？', back: '將醋瓶用力搖晃：釀造醋泡沫【細密且久久不散】；化學醋（冰醋酸稀釋）泡沫少且【消失極快】。' },
+            { title: '茶葉 TAP 履歷標章', tag: '茶', front: '產銷履歷驗證農產品 (TAP) 追溯號碼有幾碼？沖泡如何去農藥？', back: 'TAP 追溯號碼共有 【15 碼】！以溫度高於攝氏80度熱水沖泡後，將第一泡倒掉， 可以去除大部分農藥的殘留。' }
+        ];
+
+        let masteredCards = new Set();
+        let userQuizAnswers = {};
+
+        // --- INITIALIZATION ---
+        window.onload = function() {
+            renderFlashcards();
+            renderQuiz();
+        };
+
+        // --- TAB SWITCHING LOGIC ---
+        function switchTab(tabId) {
+            ['overview', 'flashcards', 'quiz', 'toolkit'].forEach(id => {
+                const el = document.getElementById(`tab-${id}`);
+                const btn = document.querySelector(`[data-tab="${id}"]`);
+                const mBtn = document.getElementById(`m-nav-${id}`);
+                
+                if (id === tabId) {
+                    el.classList.remove('hidden');
+                    if (btn) btn.classList.add('active');
+                    if (mBtn) mBtn.classList.add('text-amber-700', 'font-bold');
+                } else {
+                    el.classList.add('hidden');
+                    if (btn) btn.classList.remove('active');
+                    if (mBtn) mBtn.classList.remove('text-amber-700', 'font-bold');
+                }
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // --- FLASHCARDS LOGIC ---
+        function renderFlashcards() {
+            const container = document.getElementById('flashcards-grid');
+            container.innerHTML = '';
+
+            flashcardData.forEach((card, idx) => {
+                const isMastered = masteredCards.has(idx);
+                const cardEl = document.createElement('div');
+                cardEl.className = 'perspective-1000 h-64 cursor-pointer group';
+                cardEl.innerHTML = `
+                    <div id="card-inner-${idx}" class="relative w-full h-full transform-style-3d transition-transform duration-500 rounded-2xl border ${isMastered ? 'border-emerald-300 bg-emerald-50/40' : 'border-slate-200 bg-white'} shadow-sm group-hover:shadow-md">
+                        <!-- Front Face -->
+                        <div onclick="flipCard(${idx})" class="absolute inset-0 backface-hidden p-6 flex flex-col justify-between rounded-2xl bg-white">
+                            <div>
+                                <div class="flex justify-between items-center mb-3">
+                                    <span class="px-2.5 py-0.5 bg-amber-100 text-amber-800 text-xs font-bold rounded-full">${card.tag}</span>
+                                    <span class="text-xs text-slate-400"># ${idx+1}</span>
+                                </div>
+                                <h3 class="font-bold text-slate-800 text-base mb-2">${card.title}</h3>
+                                <p class="text-slate-600 text-xs leading-relaxed">${card.front}</p>
+                            </div>
+                            <div class="flex justify-between items-center text-xs text-slate-400 border-t border-slate-100 pt-3">
+                                <span><i class="fa-solid fa-rotate mr-1"></i>點擊翻面查看考點解析</span>
+                                <button onclick="event.stopPropagation(); toggleMastered(${idx})" class="${isMastered ? 'text-emerald-600 font-bold' : 'text-slate-400 hover:text-emerald-600'} flex items-center gap-1">
+                                    <i class="fa-${isMastered ? 'solid' : 'regular'} fa-circle-check text-base"></i> ${isMastered ? '已熟記' : '標記熟記'}
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Back Face -->
+                        <div onclick="flipCard(${idx})" class="absolute inset-0 backface-hidden rotate-y-180 p-6 flex flex-col justify-between rounded-2xl bg-slate-900 text-white">
+                            <div>
+                                <div class="flex justify-between items-center mb-3">
+                                    <span class="px-2.5 py-0.5 bg-amber-500/30 text-amber-200 text-xs font-bold rounded-full">考點觀念解析</span>
+                                    <span class="text-xs text-slate-400"># ${idx+1}</span>
+                                </div>
+                                <h3 class="font-bold text-amber-300 text-base mb-2">${card.title}</h3>
+                                <p class="text-slate-200 text-xs leading-relaxed">${card.back}</p>
+                            </div>
+                            <div class="text-right text-xs text-slate-400 border-t border-slate-800 pt-3">
+                                <span><i class="fa-solid fa-rotate mr-1"></i>點擊翻回正面</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(cardEl);
+            });
+            updateCardProgress();
+        }
+
+        function flipCard(idx) {
+            const inner = document.getElementById(`card-inner-${idx}`);
+            inner.classList.toggle('rotate-y-180');
+        }
+
+        function toggleMastered(idx) {
+            if (masteredCards.has(idx)) {
+                masteredCards.delete(idx);
+            } else {
+                masteredCards.add(idx);
+            }
+            renderFlashcards();
+        }
+
+        function resetFlashcards() {
+            masteredCards.clear();
+            renderFlashcards();
+        }
+
+        function updateCardProgress() {
+            document.getElementById('card-progress-text').innerText = `${masteredCards.size}/${flashcardData.length}`;
+        }
+
+        // --- QUIZ LOGIC ---
+        function renderQuiz() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+
+            quizData.forEach((q, qIdx) => {
+                const card = document.createElement('div');
+                card.className = 'bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4';
+                card.id = `quiz-card-${qIdx}`;
+
+                const optionsHTML = q.options.map((opt, oIdx) => `
+                    <label onclick="selectOption(${qIdx}, ${oIdx})" class="quiz-option-${qIdx} flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition text-xs sm:text-sm text-slate-700">
+                        <input type="radio" name="q-${qIdx}" value="${oIdx}" class="mt-0.5 text-amber-600 focus:ring-amber-500">
+                        <span class="leading-relaxed"><strong>${String.fromCharCode(65 + oIdx)}.</strong> ${opt}</span>
+                    </label>
+                `).join('');
+
+                card.innerHTML = `
+                    <div class="flex justify-between items-start gap-4">
+                        <div class="flex items-center gap-2">
+                            <span class="px-2.5 py-0.5 bg-slate-100 text-slate-600 text-xs font-bold rounded-full">第 ${qIdx + 1} 題</span>
+                            <span class="px-2.5 py-0.5 bg-amber-100 text-amber-800 text-xs font-bold rounded-full">${q.tag}</span>
+                        </div>
+                    </div>
+                    <h3 class="text-base font-bold text-slate-900 leading-snug">${q.question}</h3>
+                    <div class="space-y-2.5 pt-1">
+                        ${optionsHTML}
+                    </div>
+                    <div id="explanation-${qIdx}" class="hidden mt-4 p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs leading-relaxed space-y-1">
+                        <div class="font-bold flex items-center gap-1.5 text-slate-800" id="exp-title-${qIdx}">
+                            <!-- Inserted by JS -->
+                        </div>
+                        <p class="text-slate-600" id="exp-text-${qIdx}">${q.explanation}</p>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function selectOption(qIdx, oIdx) {
+            userQuizAnswers[qIdx] = oIdx;
+            
+            // Highlight selected option visually
+            const options = document.querySelectorAll(`.quiz-option-${qIdx}`);
+            options.forEach((optEl, i) => {
+                if (i === oIdx) {
+                    optEl.classList.add('border-amber-500', 'bg-amber-50/50');
+                } else {
+                    optEl.classList.remove('border-amber-500', 'bg-amber-50/50');
+                }
+            });
+
+            // Reveal explanation
+            const expDiv = document.getElementById(`explanation-${qIdx}`);
+            const expTitle = document.getElementById(`exp-title-${qIdx}`);
+            expDiv.classList.remove('hidden');
+
+            const isCorrect = oIdx === quizData[qIdx].correct;
+            if (isCorrect) {
+                expDiv.className = 'mt-4 p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-xs leading-relaxed space-y-1';
+                expTitle.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600"></i> <span class="text-emerald-800 font-bold">回答正確！</span>`;
+            } else {
+                expDiv.className = 'mt-4 p-4 rounded-xl bg-red-50 border border-red-200 text-xs leading-relaxed space-y-1';
+                expTitle.innerHTML = `<i class="fa-solid fa-circle-xmark text-red-600"></i> <span class="text-red-800 font-bold">回答錯誤（正確答案為：${String.fromCharCode(65 + quizData[qIdx].correct)}）</span>`;
+            }
+
+            calculateScore();
+        }
+
+        function calculateScore() {
+            let score = 0;
+            Object.keys(userQuizAnswers).forEach(qIdx => {
+                if (userQuizAnswers[qIdx] === quizData[qIdx].correct) {
+                    score++;
+                }
+            });
+            document.getElementById('quiz-score-display').innerText = `${score} / ${quizData.length}`;
+        }
+
+        function resetQuiz() {
+            userQuizAnswers = {};
+            document.getElementById('quiz-score-display').innerText = `0 / ${quizData.length}`;
+            renderQuiz();
+        }
+
+        // --- INTERACTIVE TOOLKIT LOGIC ---
+        function simulateRiceTest() {
+            const sample = document.getElementById('rice-sample-select').value;
+            const resDiv = document.getElementById('rice-test-result');
+            
+            if (sample === 'real') {
+                resDiv.className = "p-3 bg-red-50 rounded-xl border border-red-200 text-xs text-red-800 text-left space-y-1";
+                resDiv.innerHTML = `
+                    <div class="font-bold flex items-center gap-1.5 text-red-700">
+                        <i class="fa-solid fa-vial-circle-check text-base"></i> 顯色反應：呈現深紅/粉紅色！
+                    </div>
+                    <p>判定：<strong>真實天然紫糯米</strong></p>
+                    <p class="text-slate-600 text-[11px]">原理：紫糯米糠層含有豐富天然「花青素」，屬於水溶性酸鹼指示劑，遇酸性食用醋會立即發生紅變特異反應。</p>
+                `;
+            } else {
+                resDiv.className = "p-3 bg-slate-100 rounded-xl border border-slate-300 text-xs text-slate-700 text-left space-y-1";
+                resDiv.innerHTML = `
+                    <div class="font-bold flex items-center gap-1.5 text-slate-800">
+                        <i class="fa-solid fa-circle-exclamation text-amber-600 text-base"></i> 顯色反應：顏色無變化（仍為紫色/褪色）
+                    </div>
+                    <p>判定：<strong class="text-red-600">疑似染色假紫糯米</strong></p>
+                    <p class="text-slate-600 text-[11px]">原理：化學人工色素缺乏花青素之分子結構，滴入食用醋後不會產生結構轉變與變紅反應。</p>
+                `;
+            }
+        }
+
+        function diagnoseOil() {
+            const tpc = parseFloat(document.getElementById('oil-tpc').value);
+            const av = parseFloat(document.getElementById('oil-av').value);
+            const smoke = parseFloat(document.getElementById('oil-smoke').value);
+            const resDiv = document.getElementById('oil-test-result');
+
+            if (isNaN(tpc) && isNaN(av) && isNaN(smoke)) {
+                resDiv.className = "p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs text-slate-500 italic text-center";
+                resDiv.innerText = "請至少輸入一項檢測數值 (TPC, 酸價或發煙點)";
+                return;
+            }
+
+            let failReasons = [];
+            if (!isNaN(tpc) && tpc >= 25) failReasons.push(`總極性化合物 TPC (${tpc}%) ≥ 25%`);
+            if (!isNaN(av) && av > 2.0) failReasons.push(`酸價 AV (${av} mg KOH/g) > 2.0`);
+            if (!isNaN(smoke) && smoke < 170) failReasons.push(`發煙點 (${smoke}°C) < 170°C`);
+
+            if (failReasons.length > 0) {
+                resDiv.className = "p-3 bg-red-50 rounded-xl border border-red-200 text-xs text-red-800 text-left space-y-1";
+                resDiv.innerHTML = `
+                    <div class="font-bold text-red-700 flex items-center gap-1.5">
+                        <i class="fa-solid fa-skull-crossbones"></i> 檢驗結果：不合格！應立即全部更換新油
+                    </div>
+                    <p class="font-semibold text-slate-700">違規項目：</p>
+                    <ul class="list-disc list-inside text-[11px] text-red-600">
+                        ${failReasons.map(r => `<li>${r}</li>`).join('')}
+                    </ul>
+                    <p class="text-slate-500 text-[11px] mt-1">法規依據：《食品良好衛生規範準則》第八點規定，達此標準油品已高溫氧化劣變產生致癌自由基與過氧化物。</p>
+                `;
+            } else {
+                resDiv.className = "p-3 bg-emerald-50 rounded-xl border border-emerald-200 text-xs text-emerald-800 text-left space-y-1";
+                resDiv.innerHTML = `
+                    <div class="font-bold text-emerald-700 flex items-center gap-1.5">
+                        <i class="fa-solid fa-shield-check"></i> 檢驗結果：符合衛生標準
+                    </div>
+                    <p class="text-slate-600 text-[11px]">目前輸入之數據均在安全法規容許範圍內，請持續監控油質與換油紀錄。</p>
+                `;
+            }
+        }
+
+        const checkDetails = {
+            'soy-brew': {
+                title: '優質天然釀造醬油',
+                badge: '品質極佳 (釀造)',
+                bg: 'bg-emerald-50 border-emerald-200 text-emerald-900',
+                desc: '黃豆/黑豆經過麴菌3-6個月發酵，富含中間產物蛋白、蛋白胨及油脂。倒油時【掛壁明顯】、加酒精會產生【蛋白沉澱】、泡沫細緻消退慢。包裝通常使用玻璃瓶裝。'
+            },
+            'soy-chem': {
+                title: '水解化學醬油 (速成醬油)',
+                badge: '化學速成 (警惕 3-MCPD)',
+                bg: 'bg-red-50 border-red-200 text-red-900',
+                desc: '脫脂豆粕加鹽酸強迫分解（僅需3-7天）。缺乏大分子蛋白與油脂，無掛壁現象；加酒精不沉澱。泡沫多但因添加消泡劑極快消失。檢測【果糖酸 > 0.1%】即為水解醬油特徵。需注意 3-MCPD 致癌物風險。'
+            },
+            'vinegar-brew': {
+                title: '天然釀造食醋',
+                badge: '純釀造醋',
+                bg: 'bg-teal-50 border-teal-200 text-teal-900',
+                desc: '以穀物/水果經澱粉糖化、酒精發酵及醋酸發酵三階段製成。外觀呈淡黃或金黃色，搖晃後【泡沫細密持久不散】，香醇不刺鼻，入口口感甘醇。'
+            },
+            'vinegar-chem': {
+                title: '化學醋 (冰醋酸稀釋醋精)',
+                badge: '冰醋酸化學醋',
+                bg: 'bg-amber-50 border-amber-200 text-amber-900',
+                desc: '以工業冰醋酸加水稀釋並加入高鮮味精及焦糖色素。外觀透明無色，搖晃【泡沫極少且瞬間消失】，聞起來有強烈刺激薰眼感，入喉有酸辣刺舌感，無養分價值。'
+            }
+        };
+
+        function checkItem(type) {
+            const data = checkDetails[type];
+            const resDiv = document.getElementById('item-check-result');
+            resDiv.className = `p-3 rounded-xl border text-xs text-left space-y-1 ${data.bg}`;
+            resDiv.innerHTML = `
+                <div class="font-bold flex justify-between items-center">
+                    <span>${data.title}</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] bg-white/80 border">${data.badge}</span>
+                </div>
+                <p class="text-[11px] leading-relaxed mt-1">${data.desc}</p>
+            `;
+        }
+    </script>
+</body>
+</html>
